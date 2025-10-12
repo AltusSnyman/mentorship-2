@@ -6,6 +6,12 @@
   NODE_VERSION = "20.11.0"
   NPM_VERSION = "10.2.4"
 
+# Disable Next.js plugin (incompatible with static export)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+  [plugins.inputs]
+    disable = true
+
 # Security headers
 [[headers]]
   for = "/*"
@@ -17,17 +23,20 @@
     X-XSS-Protection = "1; mode=block"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains"
 
-# Cache static assets
+# Cache static assets with correct MIME types
 [[headers]]
   for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/_next/static/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css; charset=utf-8"
 
 [[headers]]
   for = "/images/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-# Forms configuration (for future contact forms)
-[functions]
-  directory = "netlify/functions"
