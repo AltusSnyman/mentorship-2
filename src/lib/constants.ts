@@ -11,6 +11,7 @@ export const COLORS = {
 export const STORAGE_KEYS = {
   countdownTarget: "countdown_target",
   exitPopupShown: "exitPopupShown",
+  trustedUser: "trustedUser",
 } as const;
 
 // External URLs

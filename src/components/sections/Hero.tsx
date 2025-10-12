@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import YouTube from "react-youtube";
 import CountdownTimer from "../shared/CountdownTimer";
+import ProtectedCTA from "../shared/ProtectedCTA";
 
 export default function Hero() {
   return (
@@ -74,12 +74,12 @@ export default function Hero() {
             </ul>
 
             <div className="space-y-4">
-              <Link
+              <ProtectedCTA
                 href="/enroll"
                 className="inline-block w-full sm:w-auto px-6 sm:px-8 py-4 bg-[#01F1EB] text-[#01303E] font-bold text-base sm:text-lg rounded-lg hover:bg-[#01F1EB]/90 transition-all transform hover:scale-105 shadow-lg text-center"
               >
                 👉 Enroll Now — $97 / month (Founders Rate)
-              </Link>
+              </ProtectedCTA>
 
               <div className="bg-white/80 backdrop-blur-sm p-4 rounded-lg border border-[#01F1EB]/30">
                 <CountdownTimer />

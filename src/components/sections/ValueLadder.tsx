@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import CountdownTimer from "../shared/CountdownTimer";
+import ProtectedCTA from "../shared/ProtectedCTA";
 
 export default function ValueLadder() {
   const items = [
@@ -161,12 +161,12 @@ export default function ValueLadder() {
           <p className="text-lg sm:text-xl text-[#01F1EB]/80">
             After the launch window: $197 / month.
           </p>
-          <Link
+          <ProtectedCTA
             href="/enroll"
             className="inline-block w-full sm:w-auto px-6 sm:px-8 py-4 bg-[#01F1EB] text-[#01303E] font-bold text-base sm:text-lg rounded-lg hover:bg-[#01F1EB]/90 transition-all transform hover:scale-105 shadow-lg text-center"
           >
             Enroll Now — $97 / month (Founders Rate)
-          </Link>
+          </ProtectedCTA>
           <div className="mt-4">
             <CountdownTimer />
           </div>

@@ -1,8 +1,8 @@
 "use client";
 
-import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useCountdown } from "@/hooks/useCountdown";
+import ProtectedCTA from "./ProtectedCTA";
 
 export default function StickyCTA() {
   const { scrollY } = useScroll();
@@ -23,12 +23,12 @@ export default function StickyCTA() {
             </span>
           </div>
         )}
-        <Link
+        <ProtectedCTA
           href="/enroll"
           className="block w-full py-3 px-6 bg-[#01F1EB] text-[#01303E] font-bold text-center rounded-lg hover:bg-[#01F1EB]/90 transition-all"
         >
           ENROLL NOW — $97/month
-        </Link>
+        </ProtectedCTA>
       </div>
     </motion.div>
   );

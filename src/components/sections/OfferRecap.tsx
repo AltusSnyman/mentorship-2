@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Link from "next/link";
 import CountdownTimer from "../shared/CountdownTimer";
+import ProtectedCTA from "../shared/ProtectedCTA";
 
 export default function OfferRecap() {
   return (
@@ -36,12 +36,12 @@ export default function OfferRecap() {
                   websites, 300+ videos, automations, weekly mentorship.
                 </p>
 
-                <Link
+                <ProtectedCTA
                   href="/enroll"
                   className="inline-block w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 bg-[#01F1EB] text-[#01303E] font-bold text-lg sm:text-xl rounded-lg hover:bg-[#01F1EB]/90 transition-all transform hover:scale-105 shadow-2xl text-center"
                 >
                   ENROLL — $97 / month (Founders Rate)
-                </Link>
+                </ProtectedCTA>
 
                 <div className="mt-6">
                   <CountdownTimer />
