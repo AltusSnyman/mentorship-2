@@ -62,7 +62,7 @@ export default function Testimonials() {
           {URLS.testimonials.map((url, index) => (
             <motion.div
               key={index}
-              ref={(el) => (videoRefs.current[index] = el)}
+              ref={(el) => { videoRefs.current[index] = el; }}
               data-index={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
