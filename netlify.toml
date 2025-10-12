@@ -6,12 +6,6 @@
   NODE_VERSION = "20.11.0"
   NPM_VERSION = "10.2.4"
 
-# Disable Next.js plugin (incompatible with static export)
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
-  [plugins.inputs]
-    disable = true
-
 # Security headers
 [[headers]]
   for = "/*"
