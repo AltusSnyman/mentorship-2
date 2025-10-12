@@ -95,6 +95,15 @@ export function useBehaviorTracking(options: UseBehaviorTrackingOptions = {}) {
       const trustScore = calculateTrustScore();
       const isTrusted = trustScore >= trustThreshold;
 
+      // Debug logging
+      console.log(`📊 Behavior Update:`, {
+        timeOnPage,
+        hasMouseMovement,
+        hasScrolled,
+        trustScore: Math.round(trustScore),
+        isTrusted,
+      });
+
       setBehavior({
         timeOnPage,
         hasMouseMovement,

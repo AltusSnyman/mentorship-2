@@ -34,6 +34,14 @@ export default function ProtectedCTA({
       onClick();
     }
 
+    // Debug logging with full behavior details
+    console.log(`🔍 Bot Protection Debug:`, {
+      trustScore,
+      isTrusted,
+      threshold: 50,
+      willShowPopup: !isTrusted,
+    });
+
     // Check trust score
     if (isTrusted) {
       // Trusted user - go directly
