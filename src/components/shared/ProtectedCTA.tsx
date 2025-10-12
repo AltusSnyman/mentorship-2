@@ -34,22 +34,12 @@ export default function ProtectedCTA({
       onClick();
     }
 
-    // Debug logging with full behavior details
-    console.log(`🔍 Bot Protection Debug:`, {
-      trustScore,
-      isTrusted,
-      threshold: 50,
-      willShowPopup: !isTrusted,
-    });
-
     // Check trust score
     if (isTrusted) {
       // Trusted user - go directly
-      console.log(`✅ Trusted user (score: ${trustScore}) - Direct access`);
       router.push(href);
     } else {
       // Suspicious - show confirmation popup
-      console.log(`⚠️ Suspicious behavior (score: ${trustScore}) - Showing verification`);
       setShowPopup(true);
     }
   };

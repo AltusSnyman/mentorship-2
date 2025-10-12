@@ -24,7 +24,7 @@ export default function StickyCTA() {
           </div>
         )}
         <ProtectedCTA
-          href="/enroll"
+          href="/form"
           className="block w-full py-3 px-6 bg-[#01F1EB] text-[#01303E] font-bold text-center rounded-lg hover:bg-[#01F1EB]/90 transition-all"
         >
           ENROLL NOW — $97/month
