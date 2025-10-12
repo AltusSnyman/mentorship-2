@@ -6,14 +6,6 @@
   NODE_VERSION = "20.11.0"
   NPM_VERSION = "10.2.4"
 
-# Redirect rules for SPA
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
-  conditions = {Role = ["public"]}
-
 # Security headers
 [[headers]]
   for = "/*"
