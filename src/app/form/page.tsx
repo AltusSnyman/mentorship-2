@@ -84,9 +84,28 @@ export default function FormPage() {
     setIsSubmitting(true);
 
     try {
-      // Here you could send data to your backend/CRM
-      // For now, we'll just simulate a delay and redirect
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      // Send data to LeadConnector webhook
+      const webhookUrl = "https://services.leadconnectorhq.com/hooks/YtfU1475csGLcTb5SH90/webhook-trigger/a5a7f85b-392f-40ac-89af-c33534aa184b";
+
+      const webhookPayload = {
+        fullName: formData.fullName,
+        email: formData.email,
+        timestamp: new Date().toISOString(),
+        recaptchaToken: recaptchaValue,
+        source: "AI Agency Funnel - Form Page",
+      };
+
+      const response = await fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(webhookPayload),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Webhook failed: ${response.status}`);
+      }
 
       // Store lead info in localStorage (optional - for analytics)
       localStorage.setItem("leadInfo", JSON.stringify({
@@ -104,6 +123,12 @@ export default function FormPage() {
         recaptcha: "Something went wrong. Please try again.",
       }));
       setIsSubmitting(false);
+
+      // Reset reCAPTCHA on error
+      if (recaptchaRef.current) {
+        recaptchaRef.current.reset();
+        setRecaptchaValue(null);
+      }
     }
   };
 
