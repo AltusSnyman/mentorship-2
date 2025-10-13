@@ -75,7 +75,8 @@ export default function Hero() {
 
             <div className="space-y-4">
               <ProtectedCTA
-                href="/form"
+                href="/enroll"
+                ctaSource="Hero Section"
                 className="inline-block w-full sm:w-auto px-6 sm:px-8 py-4 bg-[#01F1EB] text-[#01303E] font-bold text-base sm:text-lg rounded-lg hover:bg-[#01F1EB]/90 transition-all transform hover:scale-105 shadow-lg text-center"
               >
                 👉 Enroll Now — $97 / month (Founders Rate)
