@@ -1,11 +1,25 @@
 "use client";
 
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import Footer from "@/components/sections/Footer";
 
 export default function EnrollPage() {
+  // Track Lead event when user reaches enrollment page
+  useEffect(() => {
+    // Check if fbq is available (Meta Pixel loaded)
+    if (typeof window !== "undefined" && (window as any).fbq) {
+      (window as any).fbq("track", "Lead", {
+        content_name: "AI Agency Funnel - Enrollment Page",
+        value: 97,
+        currency: "USD",
+        source: "Inline CAPTCHA Verification",
+      });
+    }
+  }, []);
+
   const pricingTiers = [
     {
       name: "EMPIRE BUILDER",
