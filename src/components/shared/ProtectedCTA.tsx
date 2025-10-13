@@ -21,12 +21,21 @@ export default function ProtectedCTA({
   ctaSource = "Unknown CTA",
 }: ProtectedCTAProps) {
   const router = useRouter();
-  const { isTrusted, markAsTrusted } = useBehaviorTracking({
+  const { markAsTrusted } = useBehaviorTracking({
     trustThreshold: 50,
     timeThreshold: 8,
   });
 
   const [showCaptcha, setShowCaptcha] = useState(false);
+  const [hasVerified, setHasVerified] = useState(false);
+
+  // Check if user has already verified in this session
+  const checkVerificationStatus = () => {
+    if (typeof window !== "undefined") {
+      return sessionStorage.getItem("captcha_verified") === "true";
+    }
+    return false;
+  };
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
@@ -36,13 +45,15 @@ export default function ProtectedCTA({
       onClick();
     }
 
-    // Check trust score
-    if (isTrusted) {
-      // Trusted user - send minimal webhook and go directly
+    // Check if user already verified in this session
+    const isVerified = checkVerificationStatus() || hasVerified;
+
+    if (isVerified) {
+      // Already verified - send minimal webhook and go directly
       sendMinimalWebhook(null, ctaSource, true);
       router.push(href);
     } else {
-      // Suspicious - show CAPTCHA modal
+      // First click - show CAPTCHA modal
       setShowCaptcha(true);
     }
   };
@@ -51,6 +62,12 @@ export default function ProtectedCTA({
     try {
       // Send minimal webhook with CAPTCHA token
       await sendMinimalWebhook(recaptchaToken, ctaSource, false);
+
+      // Mark as verified for this session (across all CTAs)
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("captcha_verified", "true");
+      }
+      setHasVerified(true);
 
       // Mark as trusted for future visits
       markAsTrusted();
@@ -61,6 +78,10 @@ export default function ProtectedCTA({
     } catch (error) {
       console.error("Webhook error:", error);
       // Still allow navigation even if webhook fails
+      if (typeof window !== "undefined") {
+        sessionStorage.setItem("captcha_verified", "true");
+      }
+      setHasVerified(true);
       setShowCaptcha(false);
       router.push(href);
     }
